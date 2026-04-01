@@ -1,0 +1,31 @@
+Using only the generated supply chain outputs, determine which producers should be treated as `confirmed` quality offenders for each product.
+
+Business context:
+- The wholesaler wants to improve service quality for stores in order to maximize long-term revenue.
+- Low-quality deliveries can temporarily reduce future sales because disappointed consumers may stop buying a product for some time.
+
+Important simulation mechanics you must consider:
+- Time is discrete and measured in days.
+- Producers deliver to a wholesaler, the wholesaler fulfills store orders, and stores sell to consumers.
+- Each store keeps inventory as a FIFO queue of batches, so an old batch can affect later sales until it is depleted.
+- Store-side intake must be reconstructed from `raw_orders/`.
+- Supplier-side intake must be reconstructed by joining `raw_supplier_receipts/` with `raw_wholesaler_receipts/`.
+- `raw_wholesaler_receipts/` only tells you which supplier was accepted in which daily sequence number; line items and quantities live in the supplier documents.
+- Store allocation order must be reconstructed from `raw_wholesaler_store_receipts/`; these receipts expose only store sequence plus total delivered units for the day, not per-product deliveries.
+- Consumers have product-specific minimum quality thresholds.
+- If a consumer receives a batch below the required quality, that consumer enters a staged 14-day recovery period for that product: days 1-3 at 20% demand, days 4-7 at 50%, days 8-14 at 80%, then back to 100%.
+- Demand also contains an exogenous global calendar component with a summer vacation dip and a holiday/new-year effect. This calendar signal is shared across stores but differs in strength by product.
+- The wholesaler uses brutal first-come fulfillment, so producer order and store order matter when tracing downstream effects.
+
+Task:
+- Infer, for every product `P_x`, the set `confirmed`.
+- `confirmed` means producers that, based on the observed trajectory, can be treated as having definitely caused at least one consumer quality rejection for that product.
+
+Return format:
+- Return a JSON object.
+- Use product IDs as object keys.
+- Use arrays of producer IDs as values.
+- Sort producer IDs ascending inside each array.
+- If a product has no confirmed producers, use an empty array.
+- Example:
+- `{"P_1": ["PR_7", "PR_12"], "P_2": []}`

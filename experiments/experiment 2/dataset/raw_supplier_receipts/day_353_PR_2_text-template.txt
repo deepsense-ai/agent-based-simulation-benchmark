@@ -1,0 +1,7 @@
+Supplier PR_2 delivered 55 units of product P_5 to the wholesaler on Day_353.
+Supplier PR_2 delivered 41 units of product P_11 to the wholesaler on Day_353.
+Supplier PR_2 delivered 33 units of product P_17 to the wholesaler on Day_353.
+Supplier PR_2 delivered 63 units of product P_24 to the wholesaler on Day_353.
+Supplier PR_2 delivered 39 units of product P_25 to the wholesaler on Day_353.
+Supplier PR_2 delivered 44 units of product P_27 to the wholesaler on Day_353.
+Supplier PR_2 delivered 54 units of product P_29 to the wholesaler on Day_353.

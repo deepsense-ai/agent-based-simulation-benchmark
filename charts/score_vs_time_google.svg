@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="760" viewBox="0 0 1180 760" role="img">
+<rect width="100%" height="100%" fill="white" />
+<text x="590.0" y="36" text-anchor="middle" font-size="24" font-family="Arial, sans-serif" fill="#111">Google mean score vs mean time by experiment</text>
+<text x="590.0" y="742" text-anchor="middle" font-size="15" font-family="Arial, sans-serif" fill="#333">Mean time (s)</text>
+<text x="24" y="410.0" text-anchor="middle" transform="rotate(-90, 24, 410.0)" font-size="15" font-family="Arial, sans-serif" fill="#333">Mean score</text>
+<circle cx="350.00" cy="62.00" r="7" fill="#d64f4f" stroke="#111" stroke-width="0.8" />
+<text x="364.0" y="66" font-size="14" font-family="Arial, sans-serif" fill="#222">experiment 1</text>
+<circle cx="475.00" cy="62.00" r="7" fill="#3b82f6" stroke="#111" stroke-width="0.8" />
+<text x="489.0" y="66" font-size="14" font-family="Arial, sans-serif" fill="#222">experiment 2</text>
+<circle cx="600.00" cy="62.00" r="7" fill="#16a34a" stroke="#111" stroke-width="0.8" />
+<text x="614.0" y="66" font-size="14" font-family="Arial, sans-serif" fill="#222">experiment 3</text>
+<circle cx="725.00" cy="62.00" r="7" fill="#8b5cf6" stroke="#111" stroke-width="0.8" />
+<text x="739.0" y="66" font-size="14" font-family="Arial, sans-serif" fill="#222">experiment 4</text>
+<circle cx="430.00" cy="92.00" r="7" fill="#9ca3af" stroke="#111" stroke-width="0.8" />
+<text x="444.0" y="96" font-size="14" font-family="Arial, sans-serif" fill="#222">gemini-3-flash-preview</text>
+<rect x="593.00" y="85.00" width="14.00" height="14.00" fill="#9ca3af" stroke="#111" stroke-width="0.8" />
+<text x="614.0" y="96" font-size="14" font-family="Arial, sans-serif" fill="#222">gemini-3.1-pro-preview</text>
+<line x1="80.00" y1="145" x2="80.00" y2="675" stroke="#eeeeee" stroke-width="1" />
+<text x="80.00" y="697" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#555">0</text>
+<line x1="292.00" y1="145" x2="292.00" y2="675" stroke="#eeeeee" stroke-width="1" />
+<text x="292.00" y="697" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#555">538</text>
+<line x1="504.00" y1="145" x2="504.00" y2="675" stroke="#eeeeee" stroke-width="1" />
+<text x="504.00" y="697" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#555">1075</text>
+<line x1="716.00" y1="145" x2="716.00" y2="675" stroke="#eeeeee" stroke-width="1" />
+<text x="716.00" y="697" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#555">1613</text>
+<line x1="928.00" y1="145" x2="928.00" y2="675" stroke="#eeeeee" stroke-width="1" />
+<text x="928.00" y="697" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#555">2150</text>
+<line x1="1140.00" y1="145" x2="1140.00" y2="675" stroke="#eeeeee" stroke-width="1" />
+<text x="1140.00" y="697" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#555">2688</text>
+<line x1="80" y1="675.00" x2="1140" y2="675.00" stroke="#eeeeee" stroke-width="1" />
+<text x="72" y="679.00" text-anchor="end" font-size="12" font-family="Arial, sans-serif" fill="#555">0.00</text>
+<line x1="80" y1="569.00" x2="1140" y2="569.00" stroke="#eeeeee" stroke-width="1" />
+<text x="72" y="573.00" text-anchor="end" font-size="12" font-family="Arial, sans-serif" fill="#555">0.20</text>
+<line x1="80" y1="463.00" x2="1140" y2="463.00" stroke="#eeeeee" stroke-width="1" />
+<text x="72" y="467.00" text-anchor="end" font-size="12" font-family="Arial, sans-serif" fill="#555">0.40</text>
+<line x1="80" y1="357.00" x2="1140" y2="357.00" stroke="#eeeeee" stroke-width="1" />
+<text x="72" y="361.00" text-anchor="end" font-size="12" font-family="Arial, sans-serif" fill="#555">0.60</text>
+<line x1="80" y1="251.00" x2="1140" y2="251.00" stroke="#eeeeee" stroke-width="1" />
+<text x="72" y="255.00" text-anchor="end" font-size="12" font-family="Arial, sans-serif" fill="#555">0.80</text>
+<line x1="80" y1="145.00" x2="1140" y2="145.00" stroke="#eeeeee" stroke-width="1" />
+<text x="72" y="149.00" text-anchor="end" font-size="12" font-family="Arial, sans-serif" fill="#555">1.00</text>
+<rect x="80" y="145" width="1060" height="530" fill="none" stroke="#bbbbbb" stroke-width="1" />
+<rect x="103.79" y="668.00" width="14.00" height="14.00" fill="#3b82f6" stroke="#111" stroke-width="0.8" />
+<text x="120.79" y="675.00" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gemini-3.1-pro-preview (low)</text>
+<rect x="131.31" y="548.09" width="14.00" height="14.00" fill="#16a34a" stroke="#111" stroke-width="0.8" />
+<text x="148.31" y="555.09" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gemini-3.1-pro-preview (low)</text>
+<rect x="154.32" y="600.45" width="14.00" height="14.00" fill="#d64f4f" stroke="#111" stroke-width="0.8" />
+<text x="171.32" y="607.45" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gemini-3.1-pro-preview (low)</text>
+<rect x="163.63" y="608.84" width="14.00" height="14.00" fill="#8b5cf6" stroke="#111" stroke-width="0.8" />
+<text x="180.63" y="615.84" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gemini-3.1-pro-preview (low)</text>
+<circle cx="197.84" cy="415.76" r="7" fill="#16a34a" stroke="#111" stroke-width="0.8" />
+<text x="207.84" y="415.76" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gemini-3-flash-preview (high)</text>
+<circle cx="213.14" cy="394.98" r="7" fill="#16a34a" stroke="#111" stroke-width="0.8" />
+<text x="223.14" y="394.98" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gemini-3-flash-preview (low)</text>
+<circle cx="229.86" cy="410.49" r="7" fill="#3b82f6" stroke="#111" stroke-width="0.8" />
+<text x="239.86" y="410.49" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gemini-3-flash-preview (high)</text>
+<circle cx="239.99" cy="472.33" r="7" fill="#8b5cf6" stroke="#111" stroke-width="0.8" />
+<text x="249.99" y="472.33" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gemini-3-flash-preview (high)</text>
+<circle cx="255.26" cy="466.30" r="7" fill="#8b5cf6" stroke="#111" stroke-width="0.8" />
+<text x="265.26" y="466.30" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gemini-3-flash-preview (low)</text>
+<circle cx="260.74" cy="510.32" r="7" fill="#3b82f6" stroke="#111" stroke-width="0.8" />
+<text x="270.74" y="510.32" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gemini-3-flash-preview (low)</text>
+<rect x="382.33" y="322.77" width="14.00" height="14.00" fill="#16a34a" stroke="#111" stroke-width="0.8" />
+<text x="399.33" y="329.77" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gemini-3.1-pro-preview (high)</text>
+<circle cx="389.48" cy="530.61" r="7" fill="#d64f4f" stroke="#111" stroke-width="0.8" />
+<text x="399.48" y="530.61" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gemini-3-flash-preview (low)</text>
+<rect x="525.66" y="298.11" width="14.00" height="14.00" fill="#3b82f6" stroke="#111" stroke-width="0.8" />
+<text x="542.66" y="305.11" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gemini-3.1-pro-preview (high)</text>
+<rect x="527.41" y="321.58" width="14.00" height="14.00" fill="#8b5cf6" stroke="#111" stroke-width="0.8" />
+<text x="544.41" y="328.58" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gemini-3.1-pro-preview (high)</text>
+<rect x="689.58" y="367.25" width="14.00" height="14.00" fill="#d64f4f" stroke="#111" stroke-width="0.8" />
+<text x="706.58" y="374.25" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gemini-3.1-pro-preview (high)</text>
+<circle cx="807.28" cy="529.80" r="7" fill="#d64f4f" stroke="#111" stroke-width="0.8" />
+<text x="817.28" y="529.80" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gemini-3-flash-preview (high)</text>
+</svg>

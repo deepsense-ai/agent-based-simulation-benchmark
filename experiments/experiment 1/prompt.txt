@@ -1,0 +1,21 @@
+Business context:
+- The wholesaler wants to improve service quality for stores in order to maximize long-term revenue.
+- Low-quality deliveries can temporarily reduce future sales because disappointed consumers may stop buying a product for some time.
+
+Important simulation mechanics you must consider:
+- Producers deliver to a wholesaler, the wholesaler fulfills store orders, and stores sell to consumers.
+- Each store keeps inventory as a FIFO queue of batches, so an old batch can affect later sales until it is depleted.
+- If a consumer receives a batch below the required quality, future demand for that product may be reduced for some time.
+- The wholesaler uses brutal first-come fulfillment, so producer order and store order matter when tracing downstream effects.
+
+Task:
+- Infer, for every product `P_x`, the set of producers that can be treated as having definitely caused at least one consumer quality rejection for that product.
+
+Return format:
+- Return a JSON object.
+- Use product IDs as object keys.
+- Use arrays of producer IDs as values.
+- Sort producer IDs ascending inside each array.
+- If a product has no confirmed producers, use an empty array.
+- Example:
+- `{"P_1": ["PR_7", "PR_12"], "P_2": []}`

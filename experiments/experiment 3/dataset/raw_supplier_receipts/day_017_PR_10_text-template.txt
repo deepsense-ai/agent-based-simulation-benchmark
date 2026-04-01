@@ -1,0 +1,14 @@
+Supplier PR_10 delivered 42 units of product P_1 to the wholesaler on Day_17.
+Supplier PR_10 delivered 62 units of product P_4 to the wholesaler on Day_17.
+Supplier PR_10 delivered 47 units of product P_14 to the wholesaler on Day_17.
+Supplier PR_10 delivered 31 units of product P_15 to the wholesaler on Day_17.
+Supplier PR_10 delivered 45 units of product P_16 to the wholesaler on Day_17.
+Supplier PR_10 delivered 31 units of product P_17 to the wholesaler on Day_17.
+Supplier PR_10 delivered 31 units of product P_18 to the wholesaler on Day_17.
+Supplier PR_10 delivered 30 units of product P_19 to the wholesaler on Day_17.
+Supplier PR_10 delivered 41 units of product P_24 to the wholesaler on Day_17.
+Supplier PR_10 delivered 48 units of product P_25 to the wholesaler on Day_17.
+Supplier PR_10 delivered 42 units of product P_26 to the wholesaler on Day_17.
+Supplier PR_10 delivered 37 units of product P_27 to the wholesaler on Day_17.
+Supplier PR_10 delivered 31 units of product P_28 to the wholesaler on Day_17.
+Supplier PR_10 delivered 30 units of product P_29 to the wholesaler on Day_17.

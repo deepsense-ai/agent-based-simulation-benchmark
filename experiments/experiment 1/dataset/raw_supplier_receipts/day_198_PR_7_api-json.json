@@ -1,0 +1,34 @@
+{
+  "supplier_id": "PR_7",
+  "date": "Day_198",
+  "items": [
+    {
+      "prod_id": "P_2",
+      "delivered_qty": 46
+    },
+    {
+      "prod_id": "P_13",
+      "delivered_qty": 67
+    },
+    {
+      "prod_id": "P_14",
+      "delivered_qty": 71
+    },
+    {
+      "prod_id": "P_20",
+      "delivered_qty": 37
+    },
+    {
+      "prod_id": "P_23",
+      "delivered_qty": 31
+    },
+    {
+      "prod_id": "P_29",
+      "delivered_qty": 50
+    },
+    {
+      "prod_id": "P_30",
+      "delivered_qty": 44
+    }
+  ]
+}

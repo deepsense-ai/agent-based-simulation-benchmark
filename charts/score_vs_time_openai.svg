@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="760" viewBox="0 0 1180 760" role="img">
+<rect width="100%" height="100%" fill="white" />
+<text x="590.0" y="36" text-anchor="middle" font-size="24" font-family="Arial, sans-serif" fill="#111">OpenAI mean score vs mean time by experiment</text>
+<text x="590.0" y="742" text-anchor="middle" font-size="15" font-family="Arial, sans-serif" fill="#333">Mean time (s)</text>
+<text x="24" y="410.0" text-anchor="middle" transform="rotate(-90, 24, 410.0)" font-size="15" font-family="Arial, sans-serif" fill="#333">Mean score</text>
+<circle cx="350.00" cy="62.00" r="7" fill="#d64f4f" stroke="#111" stroke-width="0.8" />
+<text x="364.0" y="66" font-size="14" font-family="Arial, sans-serif" fill="#222">experiment 1</text>
+<circle cx="475.00" cy="62.00" r="7" fill="#3b82f6" stroke="#111" stroke-width="0.8" />
+<text x="489.0" y="66" font-size="14" font-family="Arial, sans-serif" fill="#222">experiment 2</text>
+<circle cx="600.00" cy="62.00" r="7" fill="#16a34a" stroke="#111" stroke-width="0.8" />
+<text x="614.0" y="66" font-size="14" font-family="Arial, sans-serif" fill="#222">experiment 3</text>
+<circle cx="725.00" cy="62.00" r="7" fill="#8b5cf6" stroke="#111" stroke-width="0.8" />
+<text x="739.0" y="66" font-size="14" font-family="Arial, sans-serif" fill="#222">experiment 4</text>
+<circle cx="345.00" cy="92.00" r="7" fill="#9ca3af" stroke="#111" stroke-width="0.8" />
+<text x="359.0" y="96" font-size="14" font-family="Arial, sans-serif" fill="#222">gpt-5.2</text>
+<rect x="508.00" y="85.00" width="14.00" height="14.00" fill="#9ca3af" stroke="#111" stroke-width="0.8" />
+<text x="529.0" y="96" font-size="14" font-family="Arial, sans-serif" fill="#222">gpt-5.4</text>
+<polygon points="685.00,85.00 678.00,92.00 685.00,99.00 692.00,92.00" fill="#9ca3af" stroke="#111" stroke-width="0.8" />
+<text x="699.0" y="96" font-size="14" font-family="Arial, sans-serif" fill="#222">gpt-5.4-mini</text>
+<line x1="80.00" y1="145" x2="80.00" y2="675" stroke="#eeeeee" stroke-width="1" />
+<text x="80.00" y="697" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#555">0</text>
+<line x1="292.00" y1="145" x2="292.00" y2="675" stroke="#eeeeee" stroke-width="1" />
+<text x="292.00" y="697" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#555">538</text>
+<line x1="504.00" y1="145" x2="504.00" y2="675" stroke="#eeeeee" stroke-width="1" />
+<text x="504.00" y="697" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#555">1075</text>
+<line x1="716.00" y1="145" x2="716.00" y2="675" stroke="#eeeeee" stroke-width="1" />
+<text x="716.00" y="697" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#555">1613</text>
+<line x1="928.00" y1="145" x2="928.00" y2="675" stroke="#eeeeee" stroke-width="1" />
+<text x="928.00" y="697" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#555">2150</text>
+<line x1="1140.00" y1="145" x2="1140.00" y2="675" stroke="#eeeeee" stroke-width="1" />
+<text x="1140.00" y="697" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#555">2688</text>
+<line x1="80" y1="675.00" x2="1140" y2="675.00" stroke="#eeeeee" stroke-width="1" />
+<text x="72" y="679.00" text-anchor="end" font-size="12" font-family="Arial, sans-serif" fill="#555">0.00</text>
+<line x1="80" y1="569.00" x2="1140" y2="569.00" stroke="#eeeeee" stroke-width="1" />
+<text x="72" y="573.00" text-anchor="end" font-size="12" font-family="Arial, sans-serif" fill="#555">0.20</text>
+<line x1="80" y1="463.00" x2="1140" y2="463.00" stroke="#eeeeee" stroke-width="1" />
+<text x="72" y="467.00" text-anchor="end" font-size="12" font-family="Arial, sans-serif" fill="#555">0.40</text>
+<line x1="80" y1="357.00" x2="1140" y2="357.00" stroke="#eeeeee" stroke-width="1" />
+<text x="72" y="361.00" text-anchor="end" font-size="12" font-family="Arial, sans-serif" fill="#555">0.60</text>
+<line x1="80" y1="251.00" x2="1140" y2="251.00" stroke="#eeeeee" stroke-width="1" />
+<text x="72" y="255.00" text-anchor="end" font-size="12" font-family="Arial, sans-serif" fill="#555">0.80</text>
+<line x1="80" y1="145.00" x2="1140" y2="145.00" stroke="#eeeeee" stroke-width="1" />
+<text x="72" y="149.00" text-anchor="end" font-size="12" font-family="Arial, sans-serif" fill="#555">1.00</text>
+<rect x="80" y="145" width="1060" height="530" fill="none" stroke="#bbbbbb" stroke-width="1" />
+<polygon points="99.49,668.00 92.49,675.00 99.49,682.00 106.49,675.00" fill="#3b82f6" stroke="#111" stroke-width="0.8" />
+<text x="109.49" y="675.00" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.4-mini (low)</text>
+<polygon points="108.45,668.00 101.45,675.00 108.45,682.00 115.45,675.00" fill="#d64f4f" stroke="#111" stroke-width="0.8" />
+<text x="118.45" y="675.00" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.4-mini (low)</text>
+<polygon points="108.59,668.00 101.59,675.00 108.59,682.00 115.59,675.00" fill="#8b5cf6" stroke="#111" stroke-width="0.8" />
+<text x="118.59" y="675.00" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.4-mini (low)</text>
+<polygon points="116.77,663.64 109.77,670.64 116.77,677.64 123.77,670.64" fill="#16a34a" stroke="#111" stroke-width="0.8" />
+<text x="126.77" y="670.64" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.4-mini (low)</text>
+<circle cx="128.02" cy="675.00" r="7" fill="#d64f4f" stroke="#111" stroke-width="0.8" />
+<text x="138.02" y="675.00" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.2 (low)</text>
+<circle cx="158.20" cy="562.32" r="7" fill="#16a34a" stroke="#111" stroke-width="0.8" />
+<text x="168.20" y="562.32" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.2 (low)</text>
+<circle cx="189.75" cy="649.39" r="7" fill="#3b82f6" stroke="#111" stroke-width="0.8" />
+<text x="199.75" y="649.39" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.2 (low)</text>
+<circle cx="194.60" cy="440.24" r="7" fill="#8b5cf6" stroke="#111" stroke-width="0.8" />
+<text x="204.60" y="440.24" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.2 (low)</text>
+<rect x="244.50" y="459.88" width="14.00" height="14.00" fill="#8b5cf6" stroke="#111" stroke-width="0.8" />
+<text x="261.50" y="466.88" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.4 (low)</text>
+<rect x="293.19" y="138.00" width="14.00" height="14.00" fill="#d64f4f" stroke="#111" stroke-width="0.8" />
+<text x="310.19" y="145.00" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.4 (xhigh)</text>
+<rect x="327.79" y="489.40" width="14.00" height="14.00" fill="#3b82f6" stroke="#111" stroke-width="0.8" />
+<text x="344.79" y="496.40" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.4 (low)</text>
+<rect x="348.66" y="473.87" width="14.00" height="14.00" fill="#16a34a" stroke="#111" stroke-width="0.8" />
+<text x="365.66" y="480.87" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.4 (low)</text>
+<rect x="385.00" y="414.37" width="14.00" height="14.00" fill="#d64f4f" stroke="#111" stroke-width="0.8" />
+<text x="402.00" y="421.37" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.4 (low)</text>
+<circle cx="483.17" cy="191.47" r="7" fill="#d64f4f" stroke="#111" stroke-width="0.8" />
+<text x="493.17" y="191.47" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.2 (xhigh)</text>
+<polygon points="571.42,375.64 564.42,382.64 571.42,389.64 578.42,382.64" fill="#8b5cf6" stroke="#111" stroke-width="0.8" />
+<text x="581.42" y="382.64" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.4-mini (xhigh)</text>
+<polygon points="620.46,423.08 613.46,430.08 620.46,437.08 627.46,430.08" fill="#d64f4f" stroke="#111" stroke-width="0.8" />
+<text x="630.46" y="430.08" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.4-mini (xhigh)</text>
+<rect x="622.66" y="397.91" width="14.00" height="14.00" fill="#16a34a" stroke="#111" stroke-width="0.8" />
+<text x="639.66" y="404.91" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.4 (xhigh)</text>
+<polygon points="675.27,510.93 668.27,517.93 675.27,524.93 682.27,517.93" fill="#16a34a" stroke="#111" stroke-width="0.8" />
+<text x="685.27" y="517.93" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.4-mini (xhigh)</text>
+<polygon points="739.30,533.45 732.30,540.45 739.30,547.45 746.30,540.45" fill="#3b82f6" stroke="#111" stroke-width="0.8" />
+<text x="749.30" y="540.45" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.4-mini (xhigh)</text>
+<rect x="763.20" y="333.89" width="14.00" height="14.00" fill="#8b5cf6" stroke="#111" stroke-width="0.8" />
+<text x="780.20" y="340.89" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.4 (xhigh)</text>
+<circle cx="874.01" cy="397.93" r="7" fill="#8b5cf6" stroke="#111" stroke-width="0.8" />
+<text x="884.01" y="397.93" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.2 (xhigh)</text>
+<circle cx="919.15" cy="443.25" r="7" fill="#16a34a" stroke="#111" stroke-width="0.8" />
+<text x="929.15" y="443.25" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.2 (xhigh)</text>
+<rect x="948.57" y="369.51" width="14.00" height="14.00" fill="#3b82f6" stroke="#111" stroke-width="0.8" />
+<text x="965.57" y="376.51" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.4 (xhigh)</text>
+<circle cx="1062.98" cy="395.79" r="7" fill="#3b82f6" stroke="#111" stroke-width="0.8" />
+<text x="1072.98" y="395.79" dominant-baseline="middle" font-size="12" font-family="Arial, sans-serif" fill="#222">gpt-5.2 (xhigh)</text>
+</svg>
