@@ -2,29 +2,35 @@
 
 # LLM Benchmarking on Business Problems via Agent-Based Simulation
 
-## Repository purpose
+## Overview
 
-This repository is intended as a compact public summary of a broader benchmarking approach. Its main purpose is to show that LLMs can be evaluated on realistic and commercially valuable business cases modeled with agent-based simulations, rather than only on abstract reasoning tasks or generic benchmark suites.
+This repository is a compact public summary of a broader **benchmarking approach focused on realistic business data analysis tasks** modeled with **agent-based simulations**.
 
 The supply-chain problem presented here is one example of that approach. In this example, some producers occasionally deliver low-quality product batches, and the analytical task is to identify which producers were actually responsible for downstream quality problems using only operational data and resulting customer behavior. This is a data analysis task that, in a real business setting, would typically be performed by a data analyst or data scientist.
 
-The problem was deliberately selected as a medium-difficulty case. That makes it useful for evaluation because different model families and reasoning settings already show interesting and practically important differences in score, speed, and stability, while the underlying agent-based simulation approach can support substantially harder problem variants as well.
+The problem was deliberately selected as a medium-difficulty case, meaning that current SOTA models score around 60% on average. That makes it useful for evaluation because different model families and reasoning settings already show interesting and practically important differences in score, speed, and stability, **while the underlying agent-based simulation approach can support substantially harder problem variants as well**.
 
-Medium-difficulty business problems are especially valuable for understanding the real business value of LLMs. If model providers want to build trust in AI for operational use, they need to demonstrate not only occasional success, but reliable and highly repeatable performance on meaningful business tasks.
+Medium-difficulty business problems are especially valuable for understanding the real business value of LLMs. If model providers want to build trust in AI for operational use, they need to demonstrate not only occasional success, but **reliable and highly repeatable performance on meaningful business tasks**.
 
-It is important to note that agent-based simulation can also be used to construct substantially more difficult problem settings.
+## Data Snapshot
 
-## Goal
+Each experiment contains both structured and semi-structured business records rather than a single clean analytical table.
 
-The main goal of the benchmark is to evaluate how well LLMs can solve realistic business data analysis problems modeled in agent-based simulations. The current benchmark focuses on a medium-difficulty analytical investigation task in a supply-chain setting.
+A typical dataset includes:
+- `sales_log.csv`
+- `raw_orders/`
+- `raw_supplier_receipts/`
+- `raw_wholesaler_receipts/`
+- `raw_wholesaler_store_receipts/`
 
-For each product, the model has to identify the producers whose deliveries truly caused quality-related customer reactions. This means distinguishing between:
+The raw records intentionally mix formats such as CSV, JSON, and TXT files in table-like, key-value, and text-template styles.
 
-- suppliers that were present in the system,
-- suppliers that coincided with the problem,
-- suppliers whose batches actually reached stores and led to lower demand later on.
-
-This setup is relevant to real business settings such as food retail, pharmaceuticals, cosmetics, and electronics, where product quality issues can propagate through the supply chain and become visible only indirectly through later commercial outcomes.
+For example, `experiments/experiment 4/dataset` contains 14,602 files in total:
+- 3,650 store order files,
+- 3,650 supplier receipt files,
+- 3,650 wholesaler receipt files,
+- 3,650 wholesaler-to-store receipt files,
+- plus a consolidated `sales_log.csv`.
 
 ## Method
 
