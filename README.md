@@ -1,3 +1,5 @@
+[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+
 # LLM Benchmarking on Business Problems via Agent-Based Simulation
 
 ## Repository purpose
@@ -134,3 +136,9 @@ The simulation was intentionally configured to contain many repeated signal patt
 
 For detailed information about the benchmark design, simulation parameters, and scoring methodology, see the [simulation description](simulation_description.md).
 
+## License
+This dataset is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+You may share the dataset in its original, unmodified form, provided that proper attribution is given.
+You may not modify, transform, or build upon the dataset.
+Commercial use of the dataset is not permitted.
+For commercial licensing inquiries, please reach out to contact@deepsense.ai
