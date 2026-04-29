@@ -4,47 +4,47 @@
   "items": [
     {
       "prod_id": "P_3",
-      "delivered_qty": 30
+      "delivered_qty": 12
     },
     {
       "prod_id": "P_4",
-      "delivered_qty": 55
+      "delivered_qty": 12
     },
     {
       "prod_id": "P_5",
-      "delivered_qty": 42
+      "delivered_qty": 11
     },
     {
-      "prod_id": "P_7",
-      "delivered_qty": 42
+      "prod_id": "P_6",
+      "delivered_qty": 14
     },
     {
-      "prod_id": "P_11",
-      "delivered_qty": 46
+      "prod_id": "P_10",
+      "delivered_qty": 10
     },
     {
-      "prod_id": "P_14",
-      "delivered_qty": 46
+      "prod_id": "P_13",
+      "delivered_qty": 15
+    },
+    {
+      "prod_id": "P_16",
+      "delivered_qty": 14
     },
     {
       "prod_id": "P_17",
-      "delivered_qty": 38
+      "delivered_qty": 16
     },
     {
-      "prod_id": "P_18",
-      "delivered_qty": 32
+      "prod_id": "P_19",
+      "delivered_qty": 18
     },
     {
       "prod_id": "P_20",
-      "delivered_qty": 43
+      "delivered_qty": 16
     },
     {
-      "prod_id": "P_21",
-      "delivered_qty": 32
-    },
-    {
-      "prod_id": "P_26",
-      "delivered_qty": 46
+      "prod_id": "P_25",
+      "delivered_qty": 12
     }
   ]
 }

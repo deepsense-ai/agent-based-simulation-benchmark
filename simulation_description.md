@@ -1,417 +1,57 @@
 # Simulation Description
 
-## Business Significance
+## Overview
 
-This simulation presents a simplified supply chain for everyday consumer goods. Products flow from producers, through a wholesaler, to stores, and finally to customers. The problem modeled here has strong business relevance because, in real supply chains, quality issues rarely end with a single defective batch. They can lead to lower sales, damage to brand reputation, poor purchasing decisions, overordering or underordering, and ultimately financial losses across multiple parts of the chain at once. This kind of mechanism matters in sectors such as food retail, pharmaceuticals, cosmetics, electronics, and any other market where customers react to product quality but the company cannot immediately see the full link between a specific supplier and later market behavior.
+This benchmark is built on an agent-based simulation of a supply chain for everyday consumer goods. Products flow from producers through a wholesaler to stores and then to customers. The simulation generates operational records such as orders, receipts, deliveries, and sales logs that together form the analytical evidence available to the solver.
 
-Each simulated day follows a similar pattern:
+The simulation is designed to represent a realistic business diagnosis problem rather than a cleanly labeled prediction task. Some producers occasionally deliver low-quality batches. However, quality failures do not appear as explicit labels in the data. Instead, they generate delayed and indirect traces in downstream system behavior.
 
-1. Customers visit their assigned stores and try to buy products.
-2. Stores sell whatever they currently have in stock.
-3. If inventory is too low, stores place orders with the wholesaler.
-4. The wholesaler gathers supply from producers and distributes it among stores.
+## Business Problem
 
-The simulation is not only about the physical movement of goods. A key part of it is product quality.
-Some producers deliver lower-quality batches. If a customer buys a product that is below their acceptable quality threshold, they become reluctant to buy that product for some time and reduce their demand over the following days.
+The practical problem represented by the simulation is common in real supply chains. Quality problems rarely end with a single defective batch. They can reduce sales, distort replenishment decisions, alter delivery patterns, and create losses across multiple parts of the system. This kind of mechanism is relevant in domains such as food retail, pharmaceuticals, cosmetics, electronics, and other markets in which customers respond to product quality but organizations cannot immediately observe the full causal link between a specific supplier and later market behavior.
 
-This creates a chain reaction:
+For that reason, the benchmark treats exploratory data analysis as a causal reconstruction task. The objective is not simply to read a defect flag from the data, but to infer which supplier-product combinations were the true source of downstream disruption.
 
-- store-level demand falls,
-- store orders to the wholesaler change,
-- the wholesaler allocates goods differently,
-- sales and delivery patterns start to look unusual.
+## Simulation Logic
 
-These indirect effects are the most important part of the task.
+Each simulated day follows a recurring operational sequence:
 
-The data does not contain a simple field saying "this producer is bad."
-It also does not provide a full cause-and-effect story in one clean table.
+1. customers visit their assigned stores and attempt to purchase products,
+2. stores sell from currently available inventory,
+3. stores place replenishment orders when inventory falls too low,
+4. the wholesaler gathers supply from producers and distributes goods among stores.
 
-Instead, the solver has to look at traces left in operational data:
+The key mechanism is product quality. When customers purchase a product whose quality falls below their acceptance threshold, they become less willing to buy that product for a period of time. This reduces subsequent demand and creates a chain of indirect effects throughout the supply chain.
+
+Those effects may include:
+
+- lower demand at the store level,
+- changed order patterns from stores to the wholesaler,
+- altered wholesaler allocation decisions,
+- unusual sales and delivery patterns over time.
+
+## Analytical Signal
+
+These indirect effects are the core of the benchmark. The data does not contain a simple field stating that a given producer is defective, nor does it provide a complete causal explanation in one clean table. Instead, the solver must reason from traces distributed across heterogeneous operational records.
+
+Relevant evidence includes:
 
 - store orders,
-- deliveries to the wholesaler,
+- deliveries from producers to the wholesaler,
 - deliveries from the wholesaler to stores,
 - store sales,
-- later drops in demand.
+- later demand reductions associated with poor customer experience.
 
-The challenge is that a bad product does not appear as an obvious label.
-It becomes visible mainly through its consequences in customer behavior and in the wider system.
+The analytical difficulty lies in the fact that poor quality becomes visible mainly through its consequences in customer behavior and in the wider system rather than through direct annotation.
 
-## What The Solver Is Supposed To Do
+## Solver Task
 
-The task is to identify the producers who truly delivered low-quality products for particular products.
+The task is to identify the producers who truly delivered low-quality products for particular goods. In operational terms, the solver must determine which supplier-product combinations were responsible for the quality problem reflected in the observed records.
 
-In other words, for each product, the solver must point to the producers whose deliveries were linked to real quality problems experienced by customers.
-
-The solver should:
+To solve the task, the solver must:
 
 1. analyze the available data generated by the simulation,
 2. reconstruct where the goods reaching stores came from,
 3. connect producer deliveries with later customer behavior,
-4. identify the producers who were the real source of the quality problems.
+4. identify the producers who were the real source of the quality problem.
 
-# Evaluation of AI performance in the simulation
-
-## Method
-
-The evaluation used one simulated environment with one ground truth shared across all experiments.
-
-The experiments were designed to simulate different conditions in which data scientists may need to work in realistic analytical settings.
-
-The study included four experiments:
-
-- Experiment 1: a reference experiment with raw data only and a brief prompt describing the problem,
-- Experiment 2: an experiment with a more informative and directive prompt but still leaving some uncertainities,
-- Experiment 3: an experiment with an additional table containing data that was redundant relative to the raw data used in the reference experiment,
-- Experiment 4: an experiment with the same raw-data setup as the reference condition, but with a more explicit and non-ambiguous prompt that spelled out the reconstruction task and key simulation mechanics.
-
-Each model was evaluated on five trajectories per experiment, for 20 trajectories in total.
-
-If a trajectory failed, one retry was granted for that trajectory.
-
-If the additional trajectory also produced no output, that trajectory was scored as `0`.
-
-A failed trajectory was defined as a trajectory that either did not produce a JSON answer file or stalled. A stalled trajectory meant that no change appeared in either `stderr` or `stdout` for 1200 seconds.
-
-All trajectories were run with the same harness provided by OpenCode.
-
-The harness used the default setup, without any custom instructions such as `agents.md`.
-
-All models were evaluated with their default temperature settings.
-
-Each model was evaluated in two reasoning-effort variants, highest and lowest, except Mistral Large, which only allowed the default setting.
-
-No trajectories were launched in non-reasoning setups.
-
-The simulation generator was deliberately configured to produce hundreds of clear signal repetitions within a 365-day simulation. In practice, this means the models mainly had to discover an effective way to approach the data, rather than solve a deeply ambiguous analytical problem. This is especially visible in the production-volume setup, where producer output was sufficient to fulfill store orders and where FIFO logic makes it possible to determine when low-quality deliveries reached stores. In more difficult versions of this simulation, queue structure is less obvious and models must reason more carefully about stock composition at particular stores.
-
-## Results
-
-### General ranking (from 20 trajectories)
-
-#### General score leaderboard
-
-| rank | model | variant | average_score |
-| --- | --- | --- | --- |
-| 1 | openai/gpt-5.4 | xhigh | 0.6758 |
-| 2 | google/gemini-3.1-pro-preview | high | 0.6426 |
-| 3 | openai/gpt-5.2 | xhigh | 0.5998 |
-| 4 | google/gemini-3-flash-preview | high | 0.4111 |
-| 5 | openai/gpt-5.4 | low | 0.3936 |
-| 6 | openai/gpt-5.4-mini | xhigh | 0.3910 |
-| 7 | google/gemini-3-flash-preview | low | 0.3763 |
-| 8 | mistral/mistral-large-latest | default | 0.2234 |
-| 9 | openai/gpt-5.2 | low | 0.1760 |
-| 10 | google/gemini-3.1-pro-preview | low | 0.1163 |
-| 11 | openai/gpt-5.4-mini | low | 0.0021 |
-
-![General score leaderboard](charts/general_score_leaderboard.svg)
-
-#### Score vs time results
-
-The score-time comparison is shown below as one chart per provider. Each point is one experiment-level mean for a specific model-variant configuration. Colors distinguish experiments, while marker shapes distinguish model families within a provider. Labels use compact names such as `gpt-5.2 (xhigh)` to keep the plots readable.
-
-##### OpenAI
-
-![OpenAI mean score vs mean time by experiment](charts/score_vs_time_openai.svg)
-
-##### Google
-
-![Google mean score vs mean time by experiment](charts/score_vs_time_google.svg)
-
-##### Mistral
-
-![Mistral mean score vs mean time by experiment](charts/score_vs_time_mistral.svg)
-
-#### Pareto frontier from mean score and mean time
-
-Treating each model-variant configuration as one 20-trajectory point, the Pareto frontier identifies setups for which no other configuration is both faster and higher-scoring.
-
-The frontier contains:
-
-- `openai/gpt-5.4-mini (low)`
-- `google/gemini-3.1-pro-preview (low)`
-- `openai/gpt-5.2 (low)`
-- `google/gemini-3-flash-preview (low)`
-- `openai/gpt-5.4 (low)`
-- `google/gemini-3-flash-preview (high)`
-- `google/gemini-3.1-pro-preview (high)`
-- `openai/gpt-5.4 (xhigh)`
-
-Configurations off the frontier are strictly dominated in the score-time trade-off. In particular, `mistral/mistral-large-latest (default)`, `openai/gpt-5.4-mini (xhigh)`, and `openai/gpt-5.2 (xhigh)` are all dominated by faster configurations with equal or better mean score.
-
-![Pareto frontier from mean score and mean time](charts/pareto_frontier_score_vs_time.svg)
-
-#### Coefficient of variation from 20 trajectories
-
-| rank | model | variant | coefficient_of_variation |
-| --- | --- | --- | --- |
-| 1 | google/gemini-3.1-pro-preview | high | 0.1604 |
-| 2 | openai/gpt-5.4 | xhigh | 0.3856 |
-| 3 | openai/gpt-5.2 | xhigh | 0.4089 |
-| 4 | openai/gpt-5.4 | low | 0.5976 |
-| 5 | google/gemini-3-flash-preview | high | 0.6566 |
-| 6 | openai/gpt-5.4-mini | xhigh | 0.6823 |
-| 7 | google/gemini-3-flash-preview | low | 0.7467 |
-| 8 | mistral/mistral-large-latest | default | 1.1510 |
-| 9 | openai/gpt-5.2 | low | 1.4402 |
-| 10 | google/gemini-3.1-pro-preview | low | 2.0237 |
-| 11 | openai/gpt-5.4-mini | low | 4.3589 |
-
-![Coefficient of variation leaderboard](charts/coefficient_of_variation_leaderboard.svg)
-
-## Conclusions
-
-The results across the four experiments reveal a high degree of instability in model performance when generating correct answers. Only one configuration — Experiment 1 using the OpenAI GPT-5.4 model with extra-high reasoning effort — achieved 100% accuracy. All other setups produced partially correct responses, with accuracy varying significantly.
-
-Clear differences are observed both between individual models and across model families. In particular, the OpenAI family exhibits substantial variability depending on the experimental setup. For example, in Experiment 1, GPT-5.4 and GPT-5.2 (with extra-high reasoning effort) achieved very strong results, while in other experiments their performance dropped by as much as 40 percentage points. In contrast, Gemini 3.1 Pro (high reasoning setting) delivers more consistent results, typically in the 60–70% range across experiments.
-
-A key factor influencing performance is reasoning effort. Higher reasoning settings consistently yield good or very good results, while low-effort configurations lead to poor or even near-zero performance. For instance, Gemini 3.1 Pro in low mode achieves results close to zero in some cases and generally does not exceed 20%. Similarly, GPT-5.4 Mini improves from near-zero performance in low mode to approximately 39% accuracy in extra-high reasoning mode. These findings highlight that reasoning effort can outweigh model size — smaller or older models can perform competitively when given sufficient reasoning capacity.
-
-Despite this variability, the presence of perfect or near-perfect trajectories across several configurations indicates that the underlying signal in the data is strong enough to enable near-optimal performance. The main limitation is therefore not the absence of structure in the task, but the inconsistency with which models identify and exploit it.
-
-Performance patterns also differ depending on how the task is formulated. Experiment 1, which relies solely on raw data and a minimal prompt, produces the best results for OpenAI models, suggesting that these models benefit from unconstrained data exploration. In contrast, additional structured information — such as aggregated tables introduced in Experiment 3 — can degrade their performance, likely due to the introduction of irrelevant or misleading signals.
-
-Conversely, Gemini models benefit from additional structure. Supplementary information and aggregated tables improve both accuracy and efficiency. For example, in Experiment 3, Gemini 3.1 Pro (high mode) achieves better results while reducing average reasoning time by approximately 50% compared to Experiment 1. This indicates effective use of structured summaries without being misled by them.
-
-Gemini models also tend to operate faster overall and frequently appear on the Pareto frontier of accuracy versus time. Another noteworthy case is the latest Mistral Large 3 model, which—despite its smaller size and lack of configurable reasoning effort—achieves competitive results in selected trajectories. In Experiment 2, it reaches slightly above 40% accuracy within an average time below 1000 seconds, comparable to GPT-5.4 in low mode. However, across all experiments, its performance remains inconsistent.
-
-Experiment 4 further demonstrates that making the task definition more explicit can improve performance in some cases. This is particularly visible for weaker OpenAI configurations, such as GPT-5.2 (low reasoning) and GPT-5.4 Mini (extra-high reasoning). However, this effect is not universal—several Google and Mistral configurations do not improve relative to Experiment 3. Thus, while prompt clarity helps, it does not eliminate robustness issues.
-
-In the overall ranking, three configurations stand out:
-	•	GPT-5.4 (extra-high reasoning), achieving the highest average score across 20 trajectories,
-	•	Gemini 3.1 Pro (high reasoning), which remains the most stable high-performing configuration while also being faster on average,
-	•	GPT-5.2 (extra-high reasoning), which also delivers strong results.
-
-Among mid-tier models, Gemini 3.1 Flash is notable for its stability, with only a small performance gap between low and high reasoning modes (approximately 37.5% vs. 41%).
-
-The analysis also highlights substantial variability in outputs. The highest variability is observed for GPT-5.4 Mini (low mode), largely due to near-zero baseline performance. Among models with non-zero effectiveness, Gemini 3.1 Pro (low mode) exhibits the greatest instability. In contrast, Gemini 3.1 Pro (high mode) shows very low variability (coefficient of variation ≈ 0.16), indicating strong repeatability.
-
-From a business perspective, consistency is critical, and in this regard Gemini 3.1 Pro (high mode) performs well. However, even this configuration achieves only about 64–65% accuracy on average, with no trajectories reaching perfect results. Given that the task requires identifying all defective supplier–product pairs, this implies that approximately 35% of defective cases are systematically missed.
-
-Overall, this medium-difficulty analytical task remains a meaningful challenge for contemporary LLMs, with robustness and repeatability emerging as the principal limitations.
-
-# Appendix (results table)
-
-| experiment | model | variant | run | score | time_seconds |
-| --- | --- | --- | --- | --- | --- |
-| experiment_1 | google/gemini-3-flash-preview | low | 1 | 0.0411 | 553.34 |
-| experiment_1 | google/gemini-3-flash-preview | low | 2 | 0.0000 | 809.40 |
-| experiment_1 | google/gemini-3-flash-preview | low | 3 | 0.6514 | 203.79 |
-| experiment_1 | google/gemini-3-flash-preview | low | 4 | 0.6697 | 1514.27 |
-| experiment_1 | google/gemini-3-flash-preview | low | 5 | 0.0000 | 843.18 |
-| experiment_1 | google/gemini-3-flash-preview | high | 1 | 0.6697 | 604.17 |
-| experiment_1 | google/gemini-3-flash-preview | high | 2 | 0.2069 | 2023.46 |
-| experiment_1 | google/gemini-3-flash-preview | high | 3 | 0.0000 | 1500.65 |
-| experiment_1 | google/gemini-3-flash-preview | high | 4 | 0.4932 | 4414.43 |
-| experiment_1 | google/gemini-3-flash-preview | high | 5 | 0.0000 | 678.64 |
-| experiment_1 | google/gemini-3.1-pro-preview | low | 1 | 0.0000 | 88.74 |
-| experiment_1 | google/gemini-3.1-pro-preview | low | 2 | 0.0000 | 70.61 |
-| experiment_1 | google/gemini-3.1-pro-preview | low | 3 | 0.0000 | 50.73 |
-| experiment_1 | google/gemini-3.1-pro-preview | low | 4 | 0.0000 | 42.48 |
-| experiment_1 | google/gemini-3.1-pro-preview | low | 5 | 0.6373 | 778.50 |
-| experiment_1 | google/gemini-3.1-pro-preview | high | 1 | 0.4795 | 820.49 |
-| experiment_1 | google/gemini-3.1-pro-preview | high | 2 | 0.6422 | 2483.16 |
-| experiment_1 | google/gemini-3.1-pro-preview | high | 3 | 0.6075 | 929.07 |
-| experiment_1 | google/gemini-3.1-pro-preview | high | 4 | 0.4384 | 1361.32 |
-| experiment_1 | google/gemini-3.1-pro-preview | high | 5 | 0.6697 | 2223.71 |
-| experiment_1 | mistral/mistral-large-latest |  | 1 | 0.0340 | 283.25 |
-| experiment_1 | mistral/mistral-large-latest |  | 2 | 0.0000 | 1232.94 |
-| experiment_1 | mistral/mistral-large-latest |  | 3 | 0.0000 | 297.81 |
-| experiment_1 | mistral/mistral-large-latest |  | 4 | 0.6697 | 568.03 |
-| experiment_1 | mistral/mistral-large-latest |  | 5 | 0.3463 | 587.92 |
-| experiment_1 | openai/gpt-5.2 | low | 1 | 0.0000 | 83.55 |
-| experiment_1 | openai/gpt-5.2 | low | 2 | 0.0000 | 211.86 |
-| experiment_1 | openai/gpt-5.2 | low | 3 | 0.0000 | 95.64 |
-| experiment_1 | openai/gpt-5.2 | low | 4 | 0.0000 | 76.20 |
-| experiment_1 | openai/gpt-5.2 | low | 5 | 0.0000 | 141.62 |
-| experiment_1 | openai/gpt-5.2 | xhigh | 1 | 1.0000 | 1031.38 |
-| experiment_1 | openai/gpt-5.2 | xhigh | 2 | 0.5616 | 1265.28 |
-| experiment_1 | openai/gpt-5.2 | xhigh | 3 | 1.0000 | 1077.51 |
-| experiment_1 | openai/gpt-5.2 | xhigh | 4 | 1.0000 | 791.79 |
-| experiment_1 | openai/gpt-5.2 | xhigh | 5 | 1.0000 | 945.87 |
-| experiment_1 | openai/gpt-5.4 | low | 1 | 0.3836 | 1393.08 |
-| experiment_1 | openai/gpt-5.4 | low | 2 | 0.4079 | 414.26 |
-| experiment_1 | openai/gpt-5.4 | low | 3 | 0.5616 | 940.96 |
-| experiment_1 | openai/gpt-5.4 | low | 4 | 0.3699 | 467.62 |
-| experiment_1 | openai/gpt-5.4 | low | 5 | 0.6697 | 739.99 |
-| experiment_1 | openai/gpt-5.4 | xhigh | 1 | 1.0000 | 231.29 |
-| experiment_1 | openai/gpt-5.4 | xhigh | 2 | 1.0000 | 1769.64 |
-| experiment_1 | openai/gpt-5.4 | xhigh | 3 | 1.0000 | 258.83 |
-| experiment_1 | openai/gpt-5.4 | xhigh | 4 | 1.0000 | 290.71 |
-| experiment_1 | openai/gpt-5.4 | xhigh | 5 | 1.0000 | 241.40 |
-| experiment_1 | openai/gpt-5.4-mini | low | 1 | 0.0000 | 80.25 |
-| experiment_1 | openai/gpt-5.4-mini | low | 2 | 0.0000 | 68.78 |
-| experiment_1 | openai/gpt-5.4-mini | low | 3 | 0.0000 | 66.10 |
-| experiment_1 | openai/gpt-5.4-mini | low | 4 | 0.0000 | 60.93 |
-| experiment_1 | openai/gpt-5.4-mini | low | 5 | 0.0000 | 84.64 |
-| experiment_1 | openai/gpt-5.4-mini | xhigh | 1 | 0.3205 | 1863.91 |
-| experiment_1 | openai/gpt-5.4-mini | xhigh | 2 | 1.0000 | 279.17 |
-| experiment_1 | openai/gpt-5.4-mini | xhigh | 3 | 0.0243 | 172.84 |
-| experiment_1 | openai/gpt-5.4-mini | xhigh | 4 | 0.6961 | 1792.46 |
-| experiment_1 | openai/gpt-5.4-mini | xhigh | 5 | 0.2697 | 2744.25 |
-| experiment_2 | google/gemini-3-flash-preview | low | 1 | 0.2179 | 269.32 |
-| experiment_2 | google/gemini-3-flash-preview | low | 2 | 0.3636 | 194.47 |
-| experiment_2 | google/gemini-3-flash-preview | low | 3 | 0.6636 | 222.02 |
-| experiment_2 | google/gemini-3-flash-preview | low | 4 | 0.0000 | 127.40 |
-| experiment_2 | google/gemini-3-flash-preview | low | 5 | 0.3085 | 1478.46 |
-| experiment_2 | google/gemini-3-flash-preview | high | 1 | 0.7053 | 289.81 |
-| experiment_2 | google/gemini-3-flash-preview | high | 2 | 0.6697 | 304.15 |
-| experiment_2 | google/gemini-3-flash-preview | high | 3 | 0.2840 | 424.10 |
-| experiment_2 | google/gemini-3-flash-preview | high | 4 | 0.1667 | 497.97 |
-| experiment_2 | google/gemini-3-flash-preview | high | 5 | 0.6697 | 384.14 |
-| experiment_2 | google/gemini-3.1-pro-preview | low | 1 | 0.0000 | 62.55 |
-| experiment_2 | google/gemini-3.1-pro-preview | low | 2 | 0.0000 | 48.84 |
-| experiment_2 | google/gemini-3.1-pro-preview | low | 3 | 0.0000 | 156.43 |
-| experiment_2 | google/gemini-3.1-pro-preview | low | 4 | 0.0000 | 66.56 |
-| experiment_2 | google/gemini-3.1-pro-preview | low | 5 | 0.0000 | 56.01 |
-| experiment_2 | google/gemini-3.1-pro-preview | high | 1 | 0.6697 | 693.93 |
-| experiment_2 | google/gemini-3.1-pro-preview | high | 2 | 0.6952 | 1053.44 |
-| experiment_2 | google/gemini-3.1-pro-preview | high | 3 | 0.6887 | 1782.31 |
-| experiment_2 | google/gemini-3.1-pro-preview | high | 4 | 0.7340 | 1391.70 |
-| experiment_2 | google/gemini-3.1-pro-preview | high | 5 | 0.7019 | 818.05 |
-| experiment_2 | mistral/mistral-large-latest |  | 1 | 0.6697 | 208.12 |
-| experiment_2 | mistral/mistral-large-latest |  | 2 | 0.6697 | 939.80 |
-| experiment_2 | mistral/mistral-large-latest |  | 3 | 0.4425 | 668.53 |
-| experiment_2 | mistral/mistral-large-latest |  | 4 | 0.3367 | 1365.55 |
-| experiment_2 | mistral/mistral-large-latest |  | 5 | 0.0000 | 1472.03 |
-| experiment_2 | openai/gpt-5.2 | low | 1 | 0.0274 | 331.08 |
-| experiment_2 | openai/gpt-5.2 | low | 2 | 0.0137 | 242.52 |
-| experiment_2 | openai/gpt-5.2 | low | 3 | 0.0000 | 242.82 |
-| experiment_2 | openai/gpt-5.2 | low | 4 | 0.0405 | 406.84 |
-| experiment_2 | openai/gpt-5.2 | low | 5 | 0.1600 | 168.31 |
-| experiment_2 | openai/gpt-5.2 | xhigh | 1 | 0.6857 | 1816.31 |
-| experiment_2 | openai/gpt-5.2 | xhigh | 2 | 0.7532 | 3365.74 |
-| experiment_2 | openai/gpt-5.2 | xhigh | 3 | 0.5513 | 3505.31 |
-| experiment_2 | openai/gpt-5.2 | xhigh | 4 | 0.4247 | 1949.81 |
-| experiment_2 | openai/gpt-5.2 | xhigh | 5 | 0.2192 | 1826.27 |
-| experiment_2 | openai/gpt-5.4 | low | 1 | 0.2192 | 602.15 |
-| experiment_2 | openai/gpt-5.4 | low | 2 | 0.6301 | 572.39 |
-| experiment_2 | openai/gpt-5.4 | low | 3 | 0.1781 | 873.38 |
-| experiment_2 | openai/gpt-5.4 | low | 4 | 0.5205 | 534.06 |
-| experiment_2 | openai/gpt-5.4 | low | 5 | 0.1370 | 648.54 |
-| experiment_2 | openai/gpt-5.4 | xhigh | 1 | 0.5890 | 2243.72 |
-| experiment_2 | openai/gpt-5.4 | xhigh | 2 | 0.7831 | 1970.98 |
-| experiment_2 | openai/gpt-5.4 | xhigh | 3 | 0.0959 | 1779.85 |
-| experiment_2 | openai/gpt-5.4 | xhigh | 4 | 0.8684 | 2578.46 |
-| experiment_2 | openai/gpt-5.4 | xhigh | 5 | 0.4795 | 2528.53 |
-| experiment_2 | openai/gpt-5.4-mini | low | 1 | 0.0000 | 47.28 |
-| experiment_2 | openai/gpt-5.4-mini | low | 2 | 0.0000 | 38.12 |
-| experiment_2 | openai/gpt-5.4-mini | low | 3 | 0.0000 | 51.75 |
-| experiment_2 | openai/gpt-5.4-mini | low | 4 | 0.0000 | 73.48 |
-| experiment_2 | openai/gpt-5.4-mini | low | 5 | 0.0000 | 36.44 |
-| experiment_2 | openai/gpt-5.4-mini | xhigh | 1 | 0.1351 | 1747.97 |
-| experiment_2 | openai/gpt-5.4-mini | xhigh | 2 | 0.1644 | 1651.58 |
-| experiment_2 | openai/gpt-5.4-mini | xhigh | 3 | 0.2208 | 1386.63 |
-| experiment_2 | openai/gpt-5.4-mini | xhigh | 4 | 0.4490 | 1647.17 |
-| experiment_2 | openai/gpt-5.4-mini | xhigh | 5 | 0.3000 | 1926.02 |
-| experiment_3 | google/gemini-3-flash-preview | low | 1 | 0.6569 | 218.20 |
-| experiment_3 | google/gemini-3-flash-preview | low | 2 | 0.4405 | 125.71 |
-| experiment_3 | google/gemini-3-flash-preview | low | 3 | 0.2297 | 259.14 |
-| experiment_3 | google/gemini-3-flash-preview | low | 4 | 0.6449 | 593.77 |
-| experiment_3 | google/gemini-3-flash-preview | low | 5 | 0.6697 | 491.24 |
-| experiment_3 | google/gemini-3-flash-preview | high | 1 | 0.6535 | 241.62 |
-| experiment_3 | google/gemini-3-flash-preview | high | 2 | 0.5976 | 352.37 |
-| experiment_3 | google/gemini-3-flash-preview | high | 3 | 0.6667 | 415.21 |
-| experiment_3 | google/gemini-3-flash-preview | high | 4 | 0.2338 | 257.47 |
-| experiment_3 | google/gemini-3-flash-preview | high | 5 | 0.2941 | 227.45 |
-| experiment_3 | google/gemini-3.1-pro-preview | low | 1 | 0.0000 | 43.81 |
-| experiment_3 | google/gemini-3.1-pro-preview | low | 2 | 0.0000 | 75.52 |
-| experiment_3 | google/gemini-3.1-pro-preview | low | 3 | 0.4615 | 371.98 |
-| experiment_3 | google/gemini-3.1-pro-preview | low | 4 | 0.6697 | 204.48 |
-| experiment_3 | google/gemini-3.1-pro-preview | low | 5 | 0.0000 | 43.58 |
-| experiment_3 | google/gemini-3.1-pro-preview | high | 1 | 0.3784 | 428.35 |
-| experiment_3 | google/gemini-3.1-pro-preview | high | 2 | 0.6931 | 780.31 |
-| experiment_3 | google/gemini-3.1-pro-preview | high | 3 | 0.7527 | 735.70 |
-| experiment_3 | google/gemini-3.1-pro-preview | high | 4 | 0.7019 | 820.86 |
-| experiment_3 | google/gemini-3.1-pro-preview | high | 5 | 0.7308 | 1156.81 |
-| experiment_3 | mistral/mistral-large-latest |  | 1 | 0.0000 | 735.82 |
-| experiment_3 | mistral/mistral-large-latest |  | 2 | 0.1154 | 1263.79 |
-| experiment_3 | mistral/mistral-large-latest |  | 3 | 0.6697 | 587.98 |
-| experiment_3 | mistral/mistral-large-latest |  | 4 | 0.0000 | 177.80 |
-| experiment_3 | mistral/mistral-large-latest |  | 5 | 0.2262 | 390.34 |
-| experiment_3 | openai/gpt-5.2 | low | 1 | 0.0000 | 93.10 |
-| experiment_3 | openai/gpt-5.2 | low | 2 | 0.6697 | 297.40 |
-| experiment_3 | openai/gpt-5.2 | low | 3 | 0.1558 | 172.26 |
-| experiment_3 | openai/gpt-5.2 | low | 4 | 0.0000 | 207.65 |
-| experiment_3 | openai/gpt-5.2 | low | 5 | 0.2375 | 221.07 |
-| experiment_3 | openai/gpt-5.2 | xhigh | 1 | 0.3699 | 2623.43 |
-| experiment_3 | openai/gpt-5.2 | xhigh | 2 | 0.3151 | 1640.93 |
-| experiment_3 | openai/gpt-5.2 | xhigh | 3 | 0.5946 | 1885.97 |
-| experiment_3 | openai/gpt-5.2 | xhigh | 4 | 0.3014 | 2081.14 |
-| experiment_3 | openai/gpt-5.2 | xhigh | 5 | 0.6053 | 2408.38 |
-| experiment_3 | openai/gpt-5.4 | low | 1 | 0.8219 | 585.90 |
-| experiment_3 | openai/gpt-5.4 | low | 2 | 0.5342 | 605.13 |
-| experiment_3 | openai/gpt-5.4 | low | 3 | 0.0274 | 518.80 |
-| experiment_3 | openai/gpt-5.4 | low | 4 | 0.4205 | 845.77 |
-| experiment_3 | openai/gpt-5.4 | low | 5 | 0.0274 | 939.51 |
-| experiment_3 | openai/gpt-5.4 | xhigh | 1 | 0.3288 | 1494.44 |
-| experiment_3 | openai/gpt-5.4 | xhigh | 2 | 0.6301 | 1734.65 |
-| experiment_3 | openai/gpt-5.4 | xhigh | 3 | 0.4658 | 1302.91 |
-| experiment_3 | openai/gpt-5.4 | xhigh | 4 | 0.3014 | 1297.12 |
-| experiment_3 | openai/gpt-5.4 | xhigh | 5 | 0.8219 | 1140.14 |
-| experiment_3 | openai/gpt-5.4-mini | low | 1 | 0.0000 | 95.75 |
-| experiment_3 | openai/gpt-5.4-mini | low | 2 | 0.0000 | 52.79 |
-| experiment_3 | openai/gpt-5.4-mini | low | 3 | 0.0411 | 74.83 |
-| experiment_3 | openai/gpt-5.4-mini | low | 4 | 0.0000 | 64.98 |
-| experiment_3 | openai/gpt-5.4-mini | low | 5 | 0.0000 | 177.89 |
-| experiment_3 | openai/gpt-5.4-mini | xhigh | 1 | 0.0000 | 29.06 |
-| experiment_3 | openai/gpt-5.4-mini | xhigh | 2 | 0.6667 | 1901.95 |
-| experiment_3 | openai/gpt-5.4-mini | xhigh | 3 | 0.0811 | 2344.16 |
-| experiment_3 | openai/gpt-5.4-mini | xhigh | 4 | 0.3636 | 1433.18 |
-| experiment_3 | openai/gpt-5.4-mini | xhigh | 5 | 0.3704 | 1839.21 |
-| experiment_4 | google/gemini-3-flash-preview | low | 1 | 0.6893 | 647.33 |
-| experiment_4 | google/gemini-3-flash-preview | low | 2 | 0.5962 | 425.28 |
-| experiment_4 | google/gemini-3-flash-preview | low | 3 | 0.0000 | 350.14 |
-| experiment_4 | google/gemini-3-flash-preview | low | 4 | 0.6697 | 223.90 |
-| experiment_4 | google/gemini-3-flash-preview | low | 5 | 0.0137 | 575.55 |
-| experiment_4 | google/gemini-3-flash-preview | high | 1 | 0.7019 | 568.84 |
-| experiment_4 | google/gemini-3-flash-preview | high | 2 | 0.0000 | 517.33 |
-| experiment_4 | google/gemini-3-flash-preview | high | 3 | 0.5495 | 236.43 |
-| experiment_4 | google/gemini-3-flash-preview | high | 4 | 0.6606 | 239.67 |
-| experiment_4 | google/gemini-3-flash-preview | high | 5 | 0.0000 | 466.31 |
-| experiment_4 | google/gemini-3.1-pro-preview | low | 1 | 0.0000 | 38.50 |
-| experiment_4 | google/gemini-3.1-pro-preview | low | 2 | 0.0000 | 67.68 |
-| experiment_4 | google/gemini-3.1-pro-preview | low | 3 | 0.5581 | 909.40 |
-| experiment_4 | google/gemini-3.1-pro-preview | low | 4 | 0.0000 | 39.63 |
-| experiment_4 | google/gemini-3.1-pro-preview | low | 5 | 0.0000 | 93.85 |
-| experiment_4 | google/gemini-3.1-pro-preview | high | 1 | 0.6408 | 1434.29 |
-| experiment_4 | google/gemini-3.1-pro-preview | high | 2 | 0.7019 | 1318.53 |
-| experiment_4 | google/gemini-3.1-pro-preview | high | 3 | 0.7423 | 1212.73 |
-| experiment_4 | google/gemini-3.1-pro-preview | high | 4 | 0.6636 | 675.08 |
-| experiment_4 | google/gemini-3.1-pro-preview | high | 5 | 0.5195 | 1120.91 |
-| experiment_4 | mistral/mistral-large-latest |  | 1 | 0.0361 | 440.07 |
-| experiment_4 | mistral/mistral-large-latest |  | 2 | 0.0893 | 1119.24 |
-| experiment_4 | mistral/mistral-large-latest |  | 3 | 0.0000 | 697.49 |
-| experiment_4 | mistral/mistral-large-latest |  | 4 | 0.1494 | 170.41 |
-| experiment_4 | mistral/mistral-large-latest |  | 5 | 0.0133 | 602.70 |
-| experiment_4 | openai/gpt-5.2 | low | 1 | 0.0658 | 288.35 |
-| experiment_4 | openai/gpt-5.2 | low | 2 | 0.6990 | 204.31 |
-| experiment_4 | openai/gpt-5.2 | low | 3 | 0.6509 | 357.56 |
-| experiment_4 | openai/gpt-5.2 | low | 4 | 0.1644 | 357.75 |
-| experiment_4 | openai/gpt-5.2 | low | 5 | 0.6346 | 245.11 |
-| experiment_4 | openai/gpt-5.2 | xhigh | 1 | 0.4658 | 1967.81 |
-| experiment_4 | openai/gpt-5.2 | xhigh | 2 | 0.6552 | 1705.31 |
-| experiment_4 | openai/gpt-5.2 | xhigh | 3 | 0.7041 | 1895.09 |
-| experiment_4 | openai/gpt-5.2 | xhigh | 4 | 0.3151 | 2749.48 |
-| experiment_4 | openai/gpt-5.2 | xhigh | 5 | 0.4737 | 1749.75 |
-| experiment_4 | openai/gpt-5.4 | low | 1 | 0.5753 | 560.28 |
-| experiment_4 | openai/gpt-5.4 | low | 2 | 0.7534 | 475.31 |
-| experiment_4 | openai/gpt-5.4 | low | 3 | 0.2740 | 380.03 |
-| experiment_4 | openai/gpt-5.4 | low | 4 | 0.3333 | 369.62 |
-| experiment_4 | openai/gpt-5.4 | low | 5 | 0.0274 | 389.27 |
-| experiment_4 | openai/gpt-5.4 | xhigh | 1 | 0.5342 | 1577.00 |
-| experiment_4 | openai/gpt-5.4 | xhigh | 2 | 0.8356 | 1376.55 |
-| experiment_4 | openai/gpt-5.4 | xhigh | 3 | 0.6316 | 3384.16 |
-| experiment_4 | openai/gpt-5.4 | xhigh | 4 | 0.5205 | 1464.59 |
-| experiment_4 | openai/gpt-5.4 | xhigh | 5 | 0.6301 | 948.96 |
-| experiment_4 | openai/gpt-5.4-mini | low | 1 | 0.0000 | 100.32 |
-| experiment_4 | openai/gpt-5.4-mini | low | 2 | 0.0000 | 48.03 |
-| experiment_4 | openai/gpt-5.4-mini | low | 3 | 0.0000 | 56.59 |
-| experiment_4 | openai/gpt-5.4-mini | low | 4 | 0.0000 | 89.23 |
-| experiment_4 | openai/gpt-5.4-mini | low | 5 | 0.0000 | 68.32 |
-| experiment_4 | openai/gpt-5.4-mini | xhigh | 1 | 0.5253 | 1646.54 |
-| experiment_4 | openai/gpt-5.4-mini | xhigh | 2 | 0.6768 | 1470.75 |
-| experiment_4 | openai/gpt-5.4-mini | xhigh | 3 | 0.2055 | 1117.94 |
-| experiment_4 | openai/gpt-5.4-mini | xhigh | 4 | 0.7889 | 1424.89 |
-| experiment_4 | openai/gpt-5.4-mini | xhigh | 5 | 0.5616 | 570.75 |

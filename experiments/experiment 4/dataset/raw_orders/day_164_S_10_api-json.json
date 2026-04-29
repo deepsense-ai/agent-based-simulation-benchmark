@@ -1,0 +1,38 @@
+{
+  "store_id": "S_10",
+  "date": "Day_164",
+  "items": [
+    {
+      "prod_id": "P_1",
+      "qty": 412
+    },
+    {
+      "prod_id": "P_3",
+      "qty": 402
+    },
+    {
+      "prod_id": "P_7",
+      "qty": 363
+    },
+    {
+      "prod_id": "P_9",
+      "qty": 304
+    },
+    {
+      "prod_id": "P_15",
+      "qty": 349
+    },
+    {
+      "prod_id": "P_24",
+      "qty": 447
+    },
+    {
+      "prod_id": "P_27",
+      "qty": 396
+    },
+    {
+      "prod_id": "P_29",
+      "qty": 412
+    }
+  ]
+}

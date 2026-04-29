@@ -1,0 +1,54 @@
+{
+  "supplier_id": "PR_49",
+  "date": "Day_204",
+  "items": [
+    {
+      "prod_id": "P_1",
+      "delivered_qty": 11
+    },
+    {
+      "prod_id": "P_2",
+      "delivered_qty": 12
+    },
+    {
+      "prod_id": "P_6",
+      "delivered_qty": 20
+    },
+    {
+      "prod_id": "P_8",
+      "delivered_qty": 13
+    },
+    {
+      "prod_id": "P_12",
+      "delivered_qty": 11
+    },
+    {
+      "prod_id": "P_15",
+      "delivered_qty": 11
+    },
+    {
+      "prod_id": "P_16",
+      "delivered_qty": 10
+    },
+    {
+      "prod_id": "P_17",
+      "delivered_qty": 17
+    },
+    {
+      "prod_id": "P_19",
+      "delivered_qty": 23
+    },
+    {
+      "prod_id": "P_24",
+      "delivered_qty": 23
+    },
+    {
+      "prod_id": "P_29",
+      "delivered_qty": 18
+    },
+    {
+      "prod_id": "P_30",
+      "delivered_qty": 15
+    }
+  ]
+}

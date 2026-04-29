@@ -1,0 +1,122 @@
+{
+  "store_id": "S_9",
+  "date": "Day_150",
+  "items": [
+    {
+      "prod_id": "P_1",
+      "qty": 384
+    },
+    {
+      "prod_id": "P_3",
+      "qty": 412
+    },
+    {
+      "prod_id": "P_4",
+      "qty": 529
+    },
+    {
+      "prod_id": "P_5",
+      "qty": 484
+    },
+    {
+      "prod_id": "P_6",
+      "qty": 489
+    },
+    {
+      "prod_id": "P_7",
+      "qty": 550
+    },
+    {
+      "prod_id": "P_8",
+      "qty": 558
+    },
+    {
+      "prod_id": "P_9",
+      "qty": 543
+    },
+    {
+      "prod_id": "P_10",
+      "qty": 408
+    },
+    {
+      "prod_id": "P_11",
+      "qty": 536
+    },
+    {
+      "prod_id": "P_12",
+      "qty": 433
+    },
+    {
+      "prod_id": "P_13",
+      "qty": 427
+    },
+    {
+      "prod_id": "P_14",
+      "qty": 551
+    },
+    {
+      "prod_id": "P_15",
+      "qty": 443
+    },
+    {
+      "prod_id": "P_16",
+      "qty": 463
+    },
+    {
+      "prod_id": "P_17",
+      "qty": 615
+    },
+    {
+      "prod_id": "P_18",
+      "qty": 538
+    },
+    {
+      "prod_id": "P_19",
+      "qty": 467
+    },
+    {
+      "prod_id": "P_20",
+      "qty": 444
+    },
+    {
+      "prod_id": "P_21",
+      "qty": 476
+    },
+    {
+      "prod_id": "P_22",
+      "qty": 490
+    },
+    {
+      "prod_id": "P_23",
+      "qty": 483
+    },
+    {
+      "prod_id": "P_24",
+      "qty": 509
+    },
+    {
+      "prod_id": "P_25",
+      "qty": 601
+    },
+    {
+      "prod_id": "P_26",
+      "qty": 595
+    },
+    {
+      "prod_id": "P_27",
+      "qty": 473
+    },
+    {
+      "prod_id": "P_28",
+      "qty": 469
+    },
+    {
+      "prod_id": "P_29",
+      "qty": 386
+    },
+    {
+      "prod_id": "P_30",
+      "qty": 514
+    }
+  ]
+}

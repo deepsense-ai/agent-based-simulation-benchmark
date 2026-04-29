@@ -1,0 +1,9 @@
+Supplier PR_26 delivered 12 units of product P_2 to the wholesaler on Day_173.
+Supplier PR_26 delivered 10 units of product P_6 to the wholesaler on Day_173.
+Supplier PR_26 delivered 12 units of product P_8 to the wholesaler on Day_173.
+Supplier PR_26 delivered 12 units of product P_9 to the wholesaler on Day_173.
+Supplier PR_26 delivered 17 units of product P_10 to the wholesaler on Day_173.
+Supplier PR_26 delivered 11 units of product P_12 to the wholesaler on Day_173.
+Supplier PR_26 delivered 11 units of product P_13 to the wholesaler on Day_173.
+Supplier PR_26 delivered 26 units of product P_23 to the wholesaler on Day_173.
+Supplier PR_26 delivered 10 units of product P_24 to the wholesaler on Day_173.
