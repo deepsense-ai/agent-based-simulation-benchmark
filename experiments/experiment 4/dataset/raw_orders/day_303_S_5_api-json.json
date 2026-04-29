@@ -1,0 +1,14 @@
+{
+  "store_id": "S_5",
+  "date": "Day_303",
+  "items": [
+    {
+      "prod_id": "P_5",
+      "qty": 405
+    },
+    {
+      "prod_id": "P_21",
+      "qty": 406
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+Supplier PR_52 delivered 13 units of product P_2 to the wholesaler on Day_303.
+Supplier PR_52 delivered 15 units of product P_4 to the wholesaler on Day_303.
+Supplier PR_52 delivered 18 units of product P_5 to the wholesaler on Day_303.
+Supplier PR_52 delivered 13 units of product P_8 to the wholesaler on Day_303.
+Supplier PR_52 delivered 11 units of product P_9 to the wholesaler on Day_303.
+Supplier PR_52 delivered 10 units of product P_10 to the wholesaler on Day_303.
+Supplier PR_52 delivered 21 units of product P_11 to the wholesaler on Day_303.
+Supplier PR_52 delivered 24 units of product P_12 to the wholesaler on Day_303.
+Supplier PR_52 delivered 27 units of product P_13 to the wholesaler on Day_303.
+Supplier PR_52 delivered 16 units of product P_15 to the wholesaler on Day_303.
+Supplier PR_52 delivered 13 units of product P_18 to the wholesaler on Day_303.
+Supplier PR_52 delivered 16 units of product P_20 to the wholesaler on Day_303.
+Supplier PR_52 delivered 12 units of product P_22 to the wholesaler on Day_303.
+Supplier PR_52 delivered 10 units of product P_23 to the wholesaler on Day_303.
+Supplier PR_52 delivered 15 units of product P_26 to the wholesaler on Day_303.

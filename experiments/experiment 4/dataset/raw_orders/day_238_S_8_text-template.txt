@@ -1,0 +1,7 @@
+Order from Day_238. Please deliver 328 units of product P_2. Regards, Store S_8.
+Order from Day_238. Please deliver 363 units of product P_8. Regards, Store S_8.
+Order from Day_238. Please deliver 340 units of product P_12. Regards, Store S_8.
+Order from Day_238. Please deliver 340 units of product P_15. Regards, Store S_8.
+Order from Day_238. Please deliver 392 units of product P_17. Regards, Store S_8.
+Order from Day_238. Please deliver 500 units of product P_18. Regards, Store S_8.
+Order from Day_238. Please deliver 358 units of product P_22. Regards, Store S_8.
