@@ -419,8 +419,3 @@ Table A1. **Per-experiment model-variant aggregates**
 | `openai/gpt-5.4-mini` | `xhigh` | `experiment_2` | 0.3254 | 1.2202 | 1012.61 |
 | `openai/gpt-5.4-mini` | `xhigh` | `experiment_3` | 0.5516 | 0.3558 | 1246.17 |
 | `openai/gpt-5.4-mini` | `xhigh` | `experiment_4` | 0.3615 | 0.9151 | 1420.66 |
-
-### Appendix B. Data and Artifact Links
-
-- [Simulation description](../reports/simulation_description.md)
-- [Trajectories](../../output/data/trajectories.csv)
